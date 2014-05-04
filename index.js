@@ -10,7 +10,7 @@ var versionFile = module.exports = function(configObject){
         fileContent;
 
     var defaultConfig = {
-        pathToOutputFile: './version.txt',
+        pathToOutputFile: __dirname + '/version.txt',
         pathToTemplate: 'version.ejs',
         templateString: '',
         extras: {}
