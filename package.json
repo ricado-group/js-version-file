@@ -4,7 +4,7 @@
   "description": "Generates a file with your apps name, version and build date",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha test/index.js"
   },
   "repository": {
     "type": "git",
