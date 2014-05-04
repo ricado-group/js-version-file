@@ -16,6 +16,16 @@ var versionFile = module.exports = function(configObject){
         extras: {}
     };
 
+
+    /**
+     * Renders the template and writes the version file to the file system.
+     * @param templateContent
+     */
+    var writeFile = function(templateContent){
+        fileContent = ejs.render(templateContent, {'name': name, 'version': version, 'time': currentTime, extras: configObject.extras});
+        fs.writeFileSync(configObject.pathToOutputFile, fileContent, {flag: 'w'});
+    }
+    
     //set default config data
     configObject = configObject || {};
     configObject = _.defaults(configObject, defaultConfig);
@@ -25,27 +35,9 @@ var versionFile = module.exports = function(configObject){
     if(configObject.templateString){
         writeFile(configObject.templateString);
     }else{
-        fs.readFile(configObject.pathToTemplate, {encoding: 'utf8'}, function(error, content){
-
-            if(error){
-                throw error;
-                return;
-            }
-
+        var content = fs.readFileSync(configObject.pathToTemplate, {encoding: 'utf8'});
             writeFile(content);
-        });
     }
 
-    /**
-     * Renders the template and writes the version file to the file system.
-     * @param templateContent
-     */
-    var writeFile = function(templateContent){
-        fileContent = ejs.render(templateContent, {'name': name, 'version': version, 'time': currentTime, extras: configObject.exports});
-        console.log(fileContent);
-        fs.writeFile(configObject.pathToOutputFile, fileContent, {flag: 'w'});
-    }
 
 };
-
-versionFile();
