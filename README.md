@@ -1,6 +1,7 @@
 version-file
 ============
 
+[![Build Status](https://travis-ci.org/morficus/version-file.svg)](https://travis-ci.org/morficus/version-file)
 [![Code Climate](https://codeclimate.com/github/morficus/version-file.png)](https://codeclimate.com/github/morficus/version-file)
 
 Generates a file with your package name, version and build date.
