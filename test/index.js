@@ -9,14 +9,14 @@ after(function(){
 });
 
 describe('version-file', function(){
-   it('should generate a file called "version.txt" if called with out arguments', function(done){
-       versionFile();
-       fs.exists(__dirname + '/../version.txt', function(exists){
-           expect(exists).to.be.true;
-           done();
-       });
-   });
-    
+    it('should generate a file called "version.txt" if called with out arguments', function(done){
+        versionFile();
+        fs.exists(__dirname + '/../version.txt', function(exists){
+            expect(exists).to.be.true;
+            done();
+        });
+    });
+
     it('should write a file in the specified location + filename given  by the "pathToOutputFile" proeprty', function(done){
         var configObject = {
             pathToOutputFile: __dirname + '/mine.txt'
@@ -27,7 +27,7 @@ describe('version-file', function(){
             done();
         });
     });
-    
+
     it('should use an external file as a custom template if specified by "pathToTemplate"', function(done){
         var configObject = {
             pathToTemplate: __dirname + '/fixtures/template.ejs'

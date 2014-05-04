@@ -25,7 +25,7 @@ var versionFile = module.exports = function(configObject){
         fileContent = ejs.render(templateContent, {'name': name, 'version': version, 'time': currentTime, extras: configObject.extras});
         fs.writeFileSync(configObject.pathToOutputFile, fileContent, {flag: 'w'});
     }
-    
+
     //set default config data
     configObject = configObject || {};
     configObject = _.defaults(configObject, defaultConfig);
@@ -36,7 +36,7 @@ var versionFile = module.exports = function(configObject){
         writeFile(configObject.templateString);
     }else{
         var content = fs.readFileSync(configObject.pathToTemplate, {encoding: 'utf8'});
-            writeFile(content);
+        writeFile(content);
     }
 
 
