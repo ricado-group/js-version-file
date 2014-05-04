@@ -1,6 +1,8 @@
 version-file
 ============
 
+[![Code Climate](https://codeclimate.com/github/morficus/version-file.png)](https://codeclimate.com/github/morficus/version-file)
+
 Generates a file with your package name, version and build date.
 
 ## Use case
