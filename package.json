@@ -25,5 +25,9 @@
   "dependencies": {
     "ejs": "~1.0.0",
     "underscore": "~1.6.0"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "~1.18.2"
   }
 }
