@@ -4,6 +4,7 @@ var packageFile = require('./package.json'),
     ejs = require('ejs');
 
 var versionFile = module.exports = function(configObject){
+
     var currentTime = (new Date()),
         name = packageFile.name,
         version = packageFile.version,
@@ -38,6 +39,5 @@ var versionFile = module.exports = function(configObject){
         var content = fs.readFileSync(configObject.pathToTemplate, {encoding: 'utf8'});
         writeFile(content);
     }
-
 
 };
