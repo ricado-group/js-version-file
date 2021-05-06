@@ -1,33 +1,31 @@
 {
-    "name": "version-file",
-    "version": "0.2.0",
-    "description": "Generates a file with your apps name, version and build date",
-    "main": "index.js",
-    "scripts": {
-        "test": "./node_modules/mocha/bin/mocha test/index.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/morficus/version-file.git"
-    },
-    "keywords": [
-        "version",
-        "file",
-        "build",
-        "date"
-    ],
-    "author": "Maurice Williams <morficus@gmail.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/morficus/version-file/issues"
-    },
-    "homepage": "https://github.com/morficus/version-file",
-    "dependencies": {
-        "ejs": "~1.0.0",
-        "underscore": "~1.6.0"
-    },
-    "devDependencies": {
-        "chai": "^1.9.1",
-        "mocha": "~1.18.2"
-    }
+  "name": "@ricado/version-file",
+  "version": "1.0.1",
+  "description": "A command line tool for generating a version file with an app's package.json information and build date",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha test/index.js"
+  },
+  "keywords": [
+    "version",
+    "file",
+    "build",
+    "date"
+  ],
+  "author": {
+    "name": "Josh Biddick",
+    "email": "josh@ricado.co.nz"
+  },
+  "license": "GPL-3.0-only",
+  "bin": {
+    "generate-version": "./bin/cli.js"
+  },
+  "dependencies": {
+    "chai": "^4.3.4",
+    "chalk": "3.0.0",
+    "ejs": "2.7.2",
+    "meow": "5.0.0",
+    "mocha": "^8.3.2",
+    "underscore": "1.9.1"
+  }
 }

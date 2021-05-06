@@ -1,43 +1,88 @@
-var packageFile = require('./package.json'),
-    fs = require('fs'),
-    _ = require('underscore'),
-    ejs = require('ejs');
+"use strict";
 
-var versionFile = module.exports = function(configObject){
+const fs = require("fs");
+const path = require("path");
+const _ = require("underscore");
+const ejs = require("ejs");
+const chalk = require("chalk");
 
-    var currentTime = (new Date()),
-        name = packageFile.name,
-        version = packageFile.version,
-        fileContent;
+function VersionFile(options) {
+  var self = this;
 
-    var defaultConfig = {
-        pathToOutputFile: __dirname + '/version.txt',
-        pathToTemplate: 'version.ejs',
-        templateString: '',
-        extras: {}
-    };
+  var defaultOptions = {
+    outputFile: "version.txt",
+    template: "version.ejs",
+    templateString: "",
+    packageFile: path.join(process.cwd(), "package.json"),
+  };
 
+  //Set default config data
+  var optionsObject = options || {};
+  self.options = _.defaults(optionsObject, defaultOptions);
 
-    /**
-     * Renders the template and writes the version file to the file system.
-     * @param templateContent
-     */
-    var writeFile = function(templateContent){
-        fileContent = ejs.render(templateContent, {'name': name, 'version': version, 'time': currentTime, extras: configObject.extras});
-        fs.writeFileSync(configObject.pathToOutputFile, fileContent, {flag: 'w'});
-    }
+  // Check for missing arguments
+  if (!this.options.packageFile) {
+    throw new Error(chalk.red("Expected path to packageFile"));
+  }
 
-    //set default config data
-    configObject = configObject || {};
-    configObject = _.defaults(configObject, defaultConfig);
+  try {
+    self.options["package"] = require(self.options.packageFile);
+  } catch (err) {
+    throw new Error(chalk.red(err));
+  }
+}
 
-    // If we are given a template string in the config, then use it directly.
-    // But if we get a file path, fetch the content then use it.
-    if(configObject.templateString){
-        writeFile(configObject.templateString);
-    }else{
-        var content = fs.readFileSync(configObject.pathToTemplate, {encoding: 'utf8'});
-        writeFile(content);
-    }
+VersionFile.prototype.generate = function () {
+  var self = this;
+  self.options.currentTime = new Date();
 
+  /*
+   * If we are given a template string in the config, then use it directly.
+   * But if we get a file path, fetch the content then use it.
+   */
+  if (self.options.templateString) {
+    self._writeFile(self.options.templateString);
+  } else {
+    fs.readFile(
+      self.options.template,
+      {
+        encoding: "utf8",
+      },
+      function (error, content) {
+        if (error) {
+          console.error(
+            error.code === "ENOENT"
+              ? "Error: The template path you specified may not exist."
+              : error.message
+          );
+          throw error;
+        }
+
+        self._writeFile(content);
+      }
+    );
+  }
 };
+
+/**
+ * Renders the template and writes the version file to the file system.
+ * @param templateContent
+ */
+VersionFile.prototype._writeFile = function (templateContent) {
+  var self = this;
+  var fileContent = ejs.render(templateContent, self.options);
+  self._ensureDirExists(path.dirname(self.options.outputFile));
+  fs.writeFileSync(self.options.outputFile, fileContent, {
+    flag: "w",
+  });
+};
+
+VersionFile.prototype._ensureDirExists = function (dirpath) {
+  try {
+    fs.mkdirSync(dirpath, { recursive: true });
+  } catch (err) {
+    if (err.code !== "EEXIST") throw err;
+  }
+};
+
+module.exports = VersionFile;

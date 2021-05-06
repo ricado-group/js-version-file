@@ -1,31 +1,32 @@
-version-file
-============
+# RICADO Version File Generator
 
-[![Build Status](https://travis-ci.org/morficus/version-file.svg)](https://travis-ci.org/morficus/version-file)
-[![Code Climate](https://codeclimate.com/github/morficus/version-file.png)](https://codeclimate.com/github/morficus/version-file)
+Generates a `version.json` file containing data extracted from the `package.json` file. 
 
-Generates a file with your package name, version and build date.
+This file is usually generated during the build stage of an App release to a public assets folder such as `/public` or `/static`. 
 
-## Use case
-The intention of this module is to provide insight into when a certain version of an app was deployed (typically web apps).  
+A Web App can later request this file (with a polling interval) to detect when a new version of the App has become available.
 
-For example, lets say you are working on a team of where not everyone has access to the source code or the ability to trigger deployments (like designers, testers, marketers, project managers, etc).  
-At some point, one of these folks might need to know when the latest version of something was deployed (either to answer a customers question or compare environments or what have you).  
-By taking a glace and the version.txt file in their browser, they can quickly get that type of information with out having to disrupt the busy developers or waiting for somebody to get back to them.
+_Inspired by [morficus/version-file](https://github.com/morficus/version-file)._
 
 ## Sample outfile file content
+```json
+{
+  "version" : {
+    "name":      "My React App",
+    "buildDate": "Mon Nov 23 2019 14:26:25 GMT+0100 (CET)",
+    "version":   "1.37.0"
+  }
+}
+```
 
-    version-file v0.1.0
-    Build date: Fri May 02 2014 00:10:42 GMT-0400 (EDT)
+## Config options:
 
-
-## Available config options:
-(these are all optional)
-
-- pathToOutputFile: where you write the file content, includes the file name (defaults to 'version.txt' in the root directory')
-- pathToTemplate: file path to an external EJS template file
-- templateString: a raw template string to be used in the file output (available as an alternative to using an external template file)
-- extras: an object intended to hold any additional data you wish to utilize in your templating (see the template section for more details)
+| Property        | Type   | Description                                                 |
+| --------------- |:------:| ------------------------------------------------------------|
+| outputFile      | string | The path and filename of where to store the output          |
+| template        | string | The path to your template file (`.ejs`)                     |
+| templateString  | string | An [EJS](https://www.npmjs.org/package/ejs) template string |
+| packageFile     | string | The path to your package.json                               |
 
 ## Templating
 
@@ -34,16 +35,51 @@ As indicated in the config options section, you can utilize your own template by
 
 The available options are:
 
-- name: the package name (based off the content of your package.json file)
-- version: the version number (also based off the content of your package.json file)
-- time: a human-readable time stamp
+- package: contains all keys of your package.json
+- buildDate: a human-readable time stamp
 - extras: an object containing any custom / additional data that is needed in the template
 
-### Sample template:
+## Sample Usage:
 
+```js
+import * as path from 'path';
+import VersionFile from '@ricado/version-file';
+
+function generateVersionFile() {
+  const versionFile = new VersionFile({
+    packageFile: path.join(appRoot, 'package.json'),
+    template: path.join(__dirname, '../lib/version.ejs'),
+    outputFile: path.join(appRoot, 'build/version.json'),
+    extras: {
+      timestamp: Date.now(),
+    }
+  });
+  versionFile.generate();
+}
+
+generateVersionFile();
 ```
-<%= name %> v<%= version %>
-Build date: <%= time %>
 
-<%= extras.teamName %>
+## CLI
+
+A CLI tool is also available to conveniently generate a version file.   
+
+### CLI Options
+
+```js
+  --packageFile,  -p  Path to package.json file // defaults to <rootDir>/package.json
+  --template,     -t  Path to template file     // defaults to a version.ejs template
+  --outputFile,   -o  Path to output file       // required
+```
+
+### Using as an NPM script
+
+```json
+{
+  "scripts": {
+    // ...
+    "version-file": "generate-version --outputFile ./build/version.json"
+  }
+}
+
 ```
