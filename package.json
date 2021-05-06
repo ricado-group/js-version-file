@@ -2,10 +2,14 @@
   "name": "@ricado/version-file",
   "version": "1.0.2",
   "description": "Generates a verson file with your apps name, version and build date",
+  "repository": {
+    "url": "https://github.com/ricado-group/js-version-file.git"
+  },
   "main": "index.js",
   "scripts": {
-    "build": "echo \"Building...\"",
-    "test": "node ./node_modules/mocha/bin/mocha test/index.js"
+    "build": "heft test --clean",
+    "test": "node ./node_modules/mocha/bin/mocha test/index.js",
+    "docs": "api-documenter generate --input-folder ./temp/api --output-folder ./docs"
   },
   "keywords": [
     "version",
@@ -13,20 +17,25 @@
     "build",
     "date"
   ],
-  "author": {
-    "name": "Josh Biddick",
-    "email": "josh@ricado.co.nz"
-  },
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "bin": {
     "generate-version": "./bin/cli.js"
   },
   "dependencies": {
-    "chai": "^4.3.4",
     "chalk": "3.0.0",
     "ejs": "2.7.2",
     "meow": "5.0.0",
-    "mocha": "^8.3.2",
     "underscore": "1.9.1"
+  },
+  "devDependencies": {
+    "@microsoft/api-documenter": "^7.13.4",
+    "@rushstack/eslint-config": "^2.3.4",
+    "@rushstack/heft": "^0.30.2",
+    "@rushstack/heft-node-rig": "^1.0.18",
+    "@types/ejs": "^3.0.6",
+    "@types/heft-jest": "^1.0.1",
+    "@types/node": "^12.20.11",
+    "@types/underscore": "^1.11.2",
+    "typescript": "^3.9.9"
   }
 }
