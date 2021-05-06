@@ -1,9 +1,10 @@
 {
   "name": "@ricado/version-file",
-  "version": "1.0.1",
-  "description": "A command line tool for generating a version file with an app's package.json information and build date",
+  "version": "1.0.2",
+  "description": "Generates a verson file with your apps name, version and build date",
   "main": "index.js",
   "scripts": {
+    "build": "echo \"Building...\"",
     "test": "node ./node_modules/mocha/bin/mocha test/index.js"
   },
   "keywords": [
