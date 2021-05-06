@@ -1,15 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-const fs = require("fs");
 const meow = require("meow");
-const VersionFile = require("../index");
+const { VersionFileGenerator } = require("../lib/VersionFileGenerator");
 const chalk = require("chalk");
-const path = require("path");
-
-// Package root directory
-const libRoot = path.join(path.dirname(fs.realpathSync(__filename)), "../");
-const appRoot = process.cwd();
 
 // Command line definition.
 const cli = meow(
@@ -29,12 +23,10 @@ const cli = meow(
     flags: {
       packageFile: {
         type: "string",
-        default: path.join(appRoot, "./package.json"),
         alias: "p",
       },
       template: {
         type: "string",
-        default: path.join(libRoot, "version.ejs"),
         alias: "t",
       },
       outputFile: {
@@ -49,7 +41,6 @@ const cli = meow(
 const { packageFile, template, outputFile } = cli.flags;
 
 Promise.resolve()
-  .then(() => outputFile || Promise.reject("The output file path is required."))
   .then(() =>
     generateVersionFile({
       packageFile,
@@ -71,6 +62,6 @@ Promise.resolve()
  *
  */
 function generateVersionFile(options) {
-  const versionFile = new VersionFile(options);
-  versionFile.generate();
+  const versionFileGenerator = new VersionFileGenerator(options);
+  versionFileGenerator.generate();
 }

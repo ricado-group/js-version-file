@@ -22,6 +22,7 @@
     "generate-version": "./bin/cli.js"
   },
   "dependencies": {
+    "@rushstack/node-core-library": "^3.37.0",
     "chalk": "3.0.0",
     "ejs": "2.7.2",
     "meow": "5.0.0",

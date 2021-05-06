@@ -21,40 +21,30 @@ _Inspired by [morficus/version-file](https://github.com/morficus/version-file)._
 
 ## Config options:
 
-| Property        | Type   | Description                                                 |
-| --------------- |:------:| ------------------------------------------------------------|
-| outputFile      | string | The path and filename of where to store the output          |
-| template        | string | The path to your template file (`.ejs`)                     |
-| templateString  | string | An [EJS](https://www.npmjs.org/package/ejs) template string |
-| packageFile     | string | The path to your package.json                               |
+| Property        | Type   | Description                                                                                            |
+| --------------- |:------:| -------------------------------------------------------------------------------------------------------|
+| outputFile      | string | The path and filename of where to store the output                                                     |
+| template        | string | The path to your template file (`.ejs`) or a [EJS](https://www.npmjs.org/package/ejs) template string  |
+| packageFile     | string | The path to your package.json                                                                          |
 
 ## Templating
 
 This modules uses [EJS](https://www.npmjs.org/package/ejs) as its templating system.
 As indicated in the config options section, you can utilize your own template by either (a) passing in a path to an external file or (b) typing the template in-line.
 
-The available options are:
-
-- package: contains all keys of your package.json
-- buildDate: a human-readable time stamp
-- extras: an object containing any custom / additional data that is needed in the template
-
 ## Sample Usage:
 
 ```js
 import * as path from 'path';
-import VersionFile from '@ricado/version-file';
+import { VersionFileGenerator } from '@ricado/version-file';
 
 function generateVersionFile() {
-  const versionFile = new VersionFile({
-    packageFile: path.join(appRoot, 'package.json'),
+  const generator = new VersionFileGenerator({
+    packageFile: path.join(__dirname, 'package.json'),
     template: path.join(__dirname, '../lib/version.ejs'),
-    outputFile: path.join(appRoot, 'build/version.json'),
-    extras: {
-      timestamp: Date.now(),
-    }
+    outputFile: path.join(__dirname, 'build/version.json'),
   });
-  versionFile.generate();
+  generator.generate();
 }
 
 generateVersionFile();
@@ -66,13 +56,17 @@ A CLI tool is also available to conveniently generate a version file.
 
 ### CLI Options
 
+If options are not provided, defaults listed as below will apply:
+
 ```js
   --packageFile,  -p  Path to package.json file // defaults to <rootDir>/package.json
   --template,     -t  Path to template file     // defaults to a version.ejs template
-  --outputFile,   -o  Path to output file       // required
+  --outputFile,   -o  Path to output file       // defaults to a ./build/version.json
 ```
 
 ### Using as an NPM script
+
+An example of overwriting the default `outputFile` path.
 
 ```json
 {

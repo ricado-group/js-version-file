@@ -5,6 +5,6 @@
  */
 export {
   IVersionFileData,
-  IVersionFileGeneratorOptions,
+  IVersionFileConfigOptions,
   VersionFileGenerator,
-} from "./VersionFile";
+} from "./VersionFileGenerator";
