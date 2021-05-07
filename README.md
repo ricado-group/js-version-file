@@ -71,7 +71,6 @@ An example of overwriting the default `outputFile` path.
 ```json
 {
   "scripts": {
-    // ...
     "version-file": "generate-version --outputFile ./build/version.json"
   }
 }
