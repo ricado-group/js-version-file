@@ -46,11 +46,11 @@ jobs:
       - name: Extract Package Version
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         id: packageVersion
-        uses: martinbeentjes/npm-get-version-action@v1.1.0
+        uses: Saionaro/extract-package-version@v1.1.1
 
       # Step 7 - Check Package Version
       - name: Check Package Version
-        if: ${{ startsWith(github.ref, 'refs/tags/') && steps.packageVersion.outputs.current-version != env.CI_REF_NAME }}
+        if: ${{ startsWith(github.ref, 'refs/tags/') && steps.packageVersion.outputs.version != env.CI_REF_NAME }}
         run: exit 1
 
       # Step 8 - Publish to NPM
