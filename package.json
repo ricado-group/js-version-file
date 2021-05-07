@@ -5,7 +5,8 @@
   "repository": {
     "url": "https://github.com/ricado-group/js-version-file.git"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
+  "typings": "dist/version-file.d.ts",
   "scripts": {
     "build": "heft test --clean",
     "test": "heft test --watch",
