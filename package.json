@@ -1,6 +1,6 @@
 {
   "name": "@ricado/version-file",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generates a verson file with your apps name, version and build date",
   "repository": {
     "url": "https://github.com/ricado-group/js-version-file.git"
@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "build": "heft test --clean",
-    "test": "node ./node_modules/mocha/bin/mocha test/index.js",
+    "test": "heft test --watch",
     "docs": "api-documenter generate --input-folder ./temp/api --output-folder ./docs"
   },
   "keywords": [
