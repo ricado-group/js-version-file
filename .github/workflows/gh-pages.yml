@@ -1,0 +1,50 @@
+# Action Name
+name: GitHub Pages
+
+# Controls when the action will run
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+# Workflow Jobs
+jobs:
+  # Deploy Job
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1 - Checkout Code
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      # Step 2 - Setup NodeJS
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: "14"
+          registry-url: "https://registry.npmjs.org"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}          
+
+      # Step 3 - Install NPM Packages
+      - name: Install NPM Packages
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Step 4 - Build the Module
+      - name: Build Module
+        run: npm run build -- --no-test
+
+      # Step 5 - Build the Docs
+      - name: Build Docs
+        run: npm run docs
+
+      # Step 6 - Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          enable_jekyll: true
+          commit_message: "docs: Deploy to GitHub Pages"

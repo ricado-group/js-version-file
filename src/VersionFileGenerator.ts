@@ -10,8 +10,17 @@ import chalk from "chalk";
  * @public
  */
 export interface IVersionFileData {
+  /**
+   * The `package.json` name field.
+   */
   name: string;
+  /**
+   * The date the version file was generated.
+   */
   buildDate: Date;
+  /**
+   * The `package.json` version field.
+   */
   version: string;
 }
 
@@ -21,8 +30,18 @@ export interface IVersionFileData {
  * @public
  */
 export interface IVersionFileConfigOptions {
+  /**
+   * The path and filename of where to store the output
+   */
   outputFile: string;
+  /**
+   * The path to your template file (`.ejs`) or
+   * a {@link https://www.npmjs.org/package/ejs | EJS} template string.
+   */
   template: string;
+  /**
+   * The path to the `package.json`.
+   */
   packageFile: string;
 }
 
@@ -73,10 +92,14 @@ export class VersionFileGenerator {
         encoding: Encoding.Utf8,
       });
       const renderedContent: string = ejs.render(fileContents, this._data);
-      return FileSystem.writeFileAsync(this._options.outputFile, renderedContent, {
-        encoding: Encoding.Utf8,
-        ensureFolderExists: true,
-      });
+      return FileSystem.writeFileAsync(
+        this._options.outputFile,
+        renderedContent,
+        {
+          encoding: Encoding.Utf8,
+          ensureFolderExists: true,
+        }
+      );
     } catch (error) {
       console.error(
         error.code === "ENOENT"
