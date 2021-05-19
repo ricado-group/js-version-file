@@ -40,12 +40,19 @@ jobs:
       - name: Build Docs
         run: npm run docs
 
-      # Step 6 - Deploy to GitHub Pages
+      # Step 6 - Create Jekyll Theme
+      - name: Create Jekyll Theme
+        uses: DamianReeves/write-file-action@v1.0   
+        with:
+          path: ./docs/_config.yml
+          contents: "theme: jekyll-theme-cayman"
+          write-mode: overwrite
+
+      # Step 7 - Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           enable_jekyll: true
-          keep_files: true
           commit_message: "docs: Deploy to GitHub Pages"
