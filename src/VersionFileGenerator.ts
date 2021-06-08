@@ -1,7 +1,6 @@
 import { Encoding, FileSystem } from "@rushstack/node-core-library";
 import * as path from "path";
 import * as ejs from "ejs";
-import _ from "underscore";
 import chalk from "chalk";
 
 /**
@@ -56,18 +55,8 @@ export class VersionFileGenerator {
   private _options: IVersionFileConfigOptions;
   private _data: IVersionFileData;
 
-  public constructor(options?: Partial<IVersionFileConfigOptions>) {
-    this._options = _.defaults(options, {
-      outputFile: "./build/version.json",
-      template: `
-{
-  "name":      "<%= name %>",
-  "buildDate": "<%= buildDate %>",
-  "version":   "<%= version %>"
-}
-`,
-      packageFile: "./package.json",
-    });
+  public constructor(options: IVersionFileConfigOptions) {
+    this._options = options;
     try {
       const packageJSON = require(path.join(
         process.cwd(),
