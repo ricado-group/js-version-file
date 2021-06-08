@@ -86,20 +86,16 @@ export class VersionFileGenerator {
   /**
    * Renders the template and writes the version file to the file system.
    */
-  private async _renderTemplate(templatePath: string): Promise<void> {
+  private _renderTemplate(templatePath: string): void {
     try {
-      const fileContents = await FileSystem.readFileAsync(templatePath, {
+      const fileContents = FileSystem.readFile(templatePath, {
         encoding: Encoding.Utf8,
       });
       const renderedContent: string = ejs.render(fileContents, this._data);
-      return FileSystem.writeFileAsync(
-        this._options.outputFile,
-        renderedContent,
-        {
-          encoding: Encoding.Utf8,
-          ensureFolderExists: true,
-        }
-      );
+      FileSystem.writeFile(this._options.outputFile, renderedContent, {
+        encoding: Encoding.Utf8,
+        ensureFolderExists: true,
+      });
     } catch (error) {
       console.error(
         error.code === "ENOENT"
@@ -110,9 +106,9 @@ export class VersionFileGenerator {
     }
   }
 
-  private async _renderTemplateString(templateString: string): Promise<void> {
+  private _renderTemplateString(templateString: string): void {
     const fileContents: string = ejs.render(templateString, this._data);
-    return FileSystem.writeFileAsync(this._options.outputFile, fileContents, {
+    FileSystem.writeFile(this._options.outputFile, fileContents, {
       encoding: Encoding.Utf8,
       ensureFolderExists: true,
     });
@@ -120,17 +116,14 @@ export class VersionFileGenerator {
 
   /**
    * Generate a version file from the {@link IVersionFileConfigOptions}.
+   * If we are given a template string in the config, then use it directly.
+   * But if we get a file path, fetch the content then use it.
    */
-  public async generate(): Promise<void> {
-    /*
-     * If we are given a template string in the config, then use it directly.
-     * But if we get a file path, fetch the content then use it.
-     */
-    const exists = FileSystem.exists(this._options.template);
-    if (exists) {
-      return this._renderTemplate(this._options.template);
+  public generate(): void {
+    if (FileSystem.exists(this._options.template)) {
+      this._renderTemplate(this._options.template);
     } else {
-      return this._renderTemplateString(this._options.template);
+      this._renderTemplateString(this._options.template);
     }
   }
 }
