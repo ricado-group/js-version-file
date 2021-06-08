@@ -23,10 +23,10 @@
     "generate-version": "./bin/cli.js"
   },
   "dependencies": {
-    "@rushstack/node-core-library": "^3.37.0",
-    "chalk": "3.0.0",
-    "ejs": "2.7.2",
-    "meow": "5.0.0",
+    "@rushstack/node-core-library": "^3.39.0",
+    "chalk": "^4.1.1",
+    "ejs": "^3.1.6",
+    "meow": "^10.0.1"
   },
   "devDependencies": {
     "@microsoft/api-documenter": "^7.13.4",
@@ -34,8 +34,7 @@
     "@rushstack/heft": "^0.30.2",
     "@rushstack/heft-node-rig": "^1.0.18",
     "@types/ejs": "^3.0.6",
-    "@types/heft-jest": "^1.0.1",
-    "@types/node": "^12.20.11",
-    "typescript": "^3.9.9"
+    "@types/heft-jest": "^1.0.2",
+    "@types/node": "^15.12.2"
   }
 }
