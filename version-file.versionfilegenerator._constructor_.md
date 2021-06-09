@@ -9,12 +9,12 @@ Constructs a new instance of the `VersionFileGenerator` class
 <b>Signature:</b>
 
 ```typescript
-constructor(options?: Partial<IVersionFileConfigOptions>);
+constructor(options: IVersionFileConfigOptions);
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  options | Partial&lt;[IVersionFileConfigOptions](./version-file.iversionfileconfigoptions.md)<!-- -->&gt; |  |
+|  options | [IVersionFileConfigOptions](./version-file.iversionfileconfigoptions.md) |  |
 

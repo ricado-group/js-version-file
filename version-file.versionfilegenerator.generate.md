@@ -4,14 +4,14 @@
 
 ## VersionFileGenerator.generate() method
 
-Generate a version file from the [IVersionFileConfigOptions](./version-file.iversionfileconfigoptions.md)<!-- -->.
+Generate a version file from the [IVersionFileConfigOptions](./version-file.iversionfileconfigoptions.md)<!-- -->. If we are given a template string in the config, then use it directly. But if we get a file path, fetch the content then use it.
 
 <b>Signature:</b>
 
 ```typescript
-generate(): Promise<void>;
+generate(): void;
 ```
 <b>Returns:</b>
 
-Promise&lt;void&gt;
+void
 
