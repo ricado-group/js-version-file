@@ -10,6 +10,7 @@ Generates a `version.json` file containing data extracted from the `package.json
 
 |  Class | Description |
 |  --- | --- |
+|  [GenerateVersionFilePlugin](./version-file.generateversionfileplugin.md) | A Webpack plugin for generating a <code>version.json</code> file. |
 |  [VersionFileGenerator](./version-file.versionfilegenerator.md) | Generates a verson file with based on a package.json file. Usually used during the build stage of an App release to a public assets folder. |
 
 ## Interfaces
