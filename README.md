@@ -64,7 +64,7 @@ If options are not provided, defaults listed as below will apply:
   --outputFile,   -o  Path to output file       // defaults to a ./build/version.json
 ```
 
-### Using as an NPM script
+### As an NPM script
 
 An example of overwriting the default `outputFile` path.
 
@@ -73,6 +73,21 @@ An example of overwriting the default `outputFile` path.
   "scripts": {
     "version-file": "generate-version --outputFile ./build/version.json"
   }
+}
+
+```
+
+### Webpack
+
+If you prefer to use Webpack, you can take advantage of the `GenerateVersionPlugin` Webpack Plugin and pass the configuration options as shown below:
+
+```javascript
+{
+  plugins: [
+    production
+      ? new GenerateVersionFilePlugin({ ...options })
+      : undefined,
+  ]
 }
 
 ```
