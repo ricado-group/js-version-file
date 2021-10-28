@@ -85,7 +85,8 @@ export class VersionFileGenerator {
         encoding: Encoding.Utf8,
         ensureFolderExists: true,
       });
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       console.error(
         error.code === "ENOENT"
           ? "Error: The template path you specified may not exist."
