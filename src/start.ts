@@ -52,6 +52,7 @@ const cli: { flags: IFlags } = meow(
         isRequired: true,
       },
     },
+    importMeta: import.meta
   }
 );
 
