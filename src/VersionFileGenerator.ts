@@ -1,7 +1,6 @@
 import { Encoding, FileSystem } from "@rushstack/node-core-library";
 import * as path from "path";
 import * as ejs from "ejs";
-import chalk from "chalk";
 
 /**
  * Data passed to EJS render function.
@@ -68,7 +67,8 @@ export class VersionFileGenerator {
         version: packageJSON.version,
       };
     } catch (err) {
-      throw new Error(chalk.red(err));
+      console.log(err);
+      throw new Error("Version File Generator: Error loading `package.json` file");
     }
   }
 
