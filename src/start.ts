@@ -1,5 +1,5 @@
 import meow from "meow";
-import { red } from "chalk";
+import chalk from "chalk";
 
 import {
   VersionFileGenerator,
@@ -68,7 +68,7 @@ Promise.resolve()
     })
   )
   .catch((error) => {
-    throw new Error(red(error));
+    throw new Error(chalk.red(error));
   });
 
 /**
