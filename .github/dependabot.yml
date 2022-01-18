@@ -37,3 +37,4 @@ updates:
       interval: "daily"
       time: "07:00"
       timezone: "Pacific/Auckland"
+    open-pull-requests-limit: 10
