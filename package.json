@@ -1,6 +1,6 @@
 {
   "name": "@ricado/version-file",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Generates a verson file with your apps name, version and build date",
   "repository": {
     "url": "https://github.com/ricado-group/js-version-file.git"
