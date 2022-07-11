@@ -19,7 +19,7 @@ jobs:
 
       # Step 2 - Setup NodeJS
       - name: Setup NodeJS
-        uses: actions/setup-node@v3.1.1
+        uses: actions/setup-node@v3.4.0
         with:
           node-version: "16"
           registry-url: "https://registry.npmjs.org"
