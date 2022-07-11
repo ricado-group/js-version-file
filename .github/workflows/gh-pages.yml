@@ -42,7 +42,7 @@ jobs:
 
       # Step 6 - Create Jekyll Theme
       - name: Create Jekyll Theme
-        uses: DamianReeves/write-file-action@v1.0   
+        uses: DamianReeves/write-file-action@v1.1   
         with:
           path: ./docs/_config.yml
           contents: "theme: jekyll-theme-cayman"
