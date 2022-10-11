@@ -36,7 +36,7 @@
     "@rushstack/heft-web-rig": "^0.9.11",
     "@types/ejs": "^3.1.0",
     "@types/heft-jest": "^1.0.2",
-    "@types/node": "^17.0.25",
+    "@types/node": "^18.8.4",
     "@types/webpack": "^5.28.0"
   }
 }
