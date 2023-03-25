@@ -1,0 +1,17 @@
+name: 'Pull Request - Merge'
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
+
+jobs:
+  merge:
+    uses: ricado-group/common-workflows/.github/workflows/pr-merge.yml@master
+    with:
+      projectType: |
+        npm
+    secrets:
+      token: ${{ secrets.GH_COMMIT_PAT }}

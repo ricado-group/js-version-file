@@ -1,0 +1,11 @@
+name: 'Pull Request - Label Check'
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [reopened, labeled, unlabeled, synchronize]
+
+jobs:
+  check-labels:
+    uses: ricado-group/common-workflows/.github/workflows/pr-label-check.yml@master

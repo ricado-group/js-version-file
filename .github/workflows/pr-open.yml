@@ -1,0 +1,12 @@
+name: 'Pull Request - Open'
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+
+jobs:
+  add-comment:
+    uses: ricado-group/common-workflows/.github/workflows/pr-open.yml@master

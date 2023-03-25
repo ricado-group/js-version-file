@@ -31,7 +31,7 @@ jobs:
           node-version: "16"
           registry-url: "https://registry.npmjs.org"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}          
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Step 4 - Install NPM Packages
       - name: Install NPM Packages
