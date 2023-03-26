@@ -8,6 +8,7 @@ export {
   IVersionFileConfigOptions,
   VersionFileGenerator,
 } from "./VersionFileGenerator";
+
 export {
   GenerateVersionFilePlugin,
 } from "./GenerateVersionFilePlugin";

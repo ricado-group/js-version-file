@@ -5,11 +5,14 @@
       "type": "node",
       "request": "launch",
       "name": "Debug Jest tests",
-      "program": "${workspaceFolder}/node_modules/@rushstack/heft/lib/start.js",
+      "program": "${workspaceFolder}/node_modules/@ricado/library-build-tools/lib/index.js",
       "cwd": "${workspaceFolder}",
-      "args": ["--debug", "test", "--clean"],
+      "args": ["test"],
       "console": "integratedTerminal",
-      "sourceMaps": true
+      "sourceMaps": true,
+      "env": {
+        "INIT_CWD": "${workspaceFolder}"
+      }
     }
   ]
 }
