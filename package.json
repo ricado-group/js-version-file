@@ -45,13 +45,13 @@
     "@rushstack/node-core-library": "^3.45.3",
     "chalk": "^5.0.1",
     "ejs": "^3.1.7",
-    "meow": "^10.1.2"
+    "meow": "^11.0.0"
   },
   "devDependencies": {
     "@ricado/library-build-tools": "^1.0.0",
     "@types/ejs": "^3.1.0",
     "@types/jest": "^29.5.0",
-    "@types/node": "^17.0.25",
+    "@types/node": "^18.15.10",
     "@types/webpack": "^5.28.0"
   }
 }
