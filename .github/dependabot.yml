@@ -1,10 +1,5 @@
 version: 2
 registries:
-  dockerhub:
-    type: docker-registry
-    url: registry.hub.docker.com
-    username: ${{ secrets.DOCKER_USERNAME }}
-    password: ${{ secrets.DOCKER_PASSWORD }}
   npm-npmjs:
     type: npm-registry
     url: https://registry.npmjs.org
@@ -13,16 +8,6 @@ updates:
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
-    schedule:
-      interval: "daily"
-      time: "07:00"
-      timezone: "Pacific/Auckland"
-  
-  # Maintain dependencies for Docker Images
-  - package-ecosystem: "docker"
-    directory: "/"
-    registries:
-      - dockerhub
     schedule:
       interval: "daily"
       time: "07:00"
