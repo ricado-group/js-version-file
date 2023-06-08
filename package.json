@@ -42,7 +42,7 @@
     "generate-version": "./bin/cli.js"
   },
   "dependencies": {
-    "@rushstack/node-core-library": "^3.45.3",
+    "@rushstack/node-core-library": "^3.59.3",
     "chalk": "^5.0.1",
     "ejs": "^3.1.7",
     "meow": "^11.0.0"
