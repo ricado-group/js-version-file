@@ -11,5 +11,8 @@
     "eslint.experimental.useFlatConfig": true,
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[github-actions-workflow]": {
+        "editor.tabSize": 2,
     }
 }

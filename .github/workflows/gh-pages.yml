@@ -34,7 +34,7 @@ jobs:
 
       # Step 4 - Build the Module
       - name: Build Module
-        run: npm run build -- --no-test
+        run: npm run build
 
       # Step 5 - Build the Docs
       - name: Build Docs

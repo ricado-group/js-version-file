@@ -13,20 +13,15 @@
             "import": {
                 "types": "./lib/esm/types/index.d.ts",
                 "default": "./lib/esm/index.js"
-            },
-            "require": {
-                "types": "./lib/cjs/types/index.d.ts",
-                "default": "./lib/cjs/index.js"
             }
         }
     },
     "files": [
         "lib/**/*",
-        "src/**/*",
         "bin/**/*"
     ],
     "scripts": {
-        "build": "build-tools build --type both",
+        "build": "build-tools build --type esm",
         "prepack": "npm run build",
         "test": "build-tools test",
         "docs": "build-tools docs"
