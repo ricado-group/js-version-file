@@ -4,11 +4,11 @@
  * @packageDocumentation
  */
 export {
-  IVersionFileData,
-  IVersionFileConfigOptions,
-  VersionFileGenerator,
-} from "./VersionFileGenerator";
+    IVersionFileData,
+    IVersionFileConfigOptions,
+    VersionFileGenerator,
+} from "./VersionFileGenerator.js";
 
 export {
-  GenerateVersionFilePlugin,
-} from "./GenerateVersionFilePlugin";
+    GenerateVersionFilePlugin,
+} from "./GenerateVersionFilePlugin.js";

@@ -2,11 +2,11 @@ import meow from "meow";
 import chalk from "chalk";
 
 import {
-  VersionFileGenerator,
-  IVersionFileConfigOptions,
-} from "./VersionFileGenerator";
+    VersionFileGenerator,
+    IVersionFileConfigOptions,
+} from "./VersionFileGenerator.js";
 
-const defaultTemplate: string = `
+const defaultTemplate = `
 {
   "name":      "<%= name %>",
   "buildDate": "<%= buildDate %>",
@@ -14,15 +14,9 @@ const defaultTemplate: string = `
 }
 `;
 
-interface IFlags {
-  packageFile: string;
-  template: string;
-  outputFile: string;
-}
-
 // Command line definition.
-const cli: { flags: IFlags } = meow(
-  `
+const cli = meow(
+    `
   Usage
     $ generate-version <package.json> <template.ejs> <output_file.json>
 
@@ -34,42 +28,43 @@ const cli: { flags: IFlags } = meow(
   Examples
     $ generate-version -p ./package.json -t ./templates/version.ejs -o ./build/version.json
 `,
-  {
-    flags: {
-      packageFile: {
-        type: "string",
-        alias: "p",
-        default: "./package.json",
-      },
-      template: {
-        type: "string",
-        alias: "t",
-        default: defaultTemplate,
-      },
-      outputFile: {
-        type: "string",
-        alias: "o",
-        isRequired: true,
-      },
-    },
-    importMeta: import.meta
-  }
+    {
+        flags: {
+            packageFile: {
+                type: "string",
+                shortFlag: "p",
+                default: "./package.json",
+            },
+            template: {
+                type: "string",
+                shortFlag: "t",
+                default: defaultTemplate,
+            },
+            outputFile: {
+                type: "string",
+                shortFlag: "o",
+                isRequired: true,
+            },
+        },
+        importMeta: import.meta
+    }
 );
 
 // User inputs read by the terminal
 const { packageFile, template, outputFile } = cli.flags;
 
 Promise.resolve()
-  .then(() =>
-    generateVersionFile({
-      packageFile,
-      template,
-      outputFile,
-    })
-  )
-  .catch((error) => {
-    throw new Error(chalk.red(error));
-  });
+    .then(() =>
+        generateVersionFile({
+            packageFile,
+            template,
+            outputFile,
+        })
+    )
+    .catch((error) =>
+    {
+        throw new Error(chalk.red(error));
+    });
 
 /**
  * Generate Version File.
@@ -79,7 +74,8 @@ Promise.resolve()
  * This file is used to display the version
  * number at the bottom of the app.
  */
-function generateVersionFile(options: IVersionFileConfigOptions): void {
-  const versionFileGenerator = new VersionFileGenerator(options);
-  versionFileGenerator.generate();
+function generateVersionFile(options: IVersionFileConfigOptions): void
+{
+    const versionFileGenerator = new VersionFileGenerator(options);
+    versionFileGenerator.generate();
 }

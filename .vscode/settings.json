@@ -1,0 +1,15 @@
+{
+    "files.encoding": "utf8",
+    "files.eol": "\n",
+	"editor.tabSize": 4,
+	"editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": true,
+    "eslint.lintTask.enable": true,
+    "eslint.format.enable": true,
+    "eslint.experimental.useFlatConfig": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
+}

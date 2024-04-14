@@ -1,11 +1,11 @@
 import * as Webpack from "webpack";
 import {
-  IVersionFileConfigOptions,
-  VersionFileGenerator,
-} from "./VersionFileGenerator";
+    IVersionFileConfigOptions,
+    VersionFileGenerator,
+} from "./VersionFileGenerator.js";
 
-const PLUGIN_NAME: string = "generate-version-file";
-const DEFAULT_TEMPLATE: string = `
+const PLUGIN_NAME = "generate-version-file";
+const DEFAULT_TEMPLATE = `
 {
   "name":      "<%= name %>",
   "buildDate": "<%= buildDate %>",
@@ -23,32 +23,35 @@ const DEFAULT_TEMPLATE: string = `
  *
  * @public
  */
-export class GenerateVersionFilePlugin
-  implements Webpack.WebpackPluginInstance {
-  public static defaultOptions: IVersionFileConfigOptions = {
-    packageFile: "./package.json",
-    template: DEFAULT_TEMPLATE,
-    outputFile: "./build/version.json",
-  };
-  public options: IVersionFileConfigOptions;
+export class GenerateVersionFilePlugin implements Webpack.WebpackPluginInstance
+{
+    public static defaultOptions: IVersionFileConfigOptions = {
+        packageFile: "./package.json",
+        template: DEFAULT_TEMPLATE,
+        outputFile: "./build/version.json",
+    };
 
-  public constructor(options: IVersionFileConfigOptions) {
-    this.options = { ...GenerateVersionFilePlugin.defaultOptions, ...options };
-  }
+    public options: IVersionFileConfigOptions;
 
-  public apply(compiler: Webpack.Compiler): void {
-    const isWebpack5: boolean = !!compiler.hooks;
-
-    if (!isWebpack5) {
-      throw new Error(
-        `The ${GenerateVersionFilePlugin.name} plugin requires Webpack 5`
-      );
+    public constructor(options: IVersionFileConfigOptions)
+    {
+        this.options = { ...GenerateVersionFilePlugin.defaultOptions, ...options };
     }
 
-    compiler.hooks.afterEmit.tapAsync(PLUGIN_NAME, (compilation, callback) => {
-      const generator = new VersionFileGenerator(this.options);
-      generator.generate();
-      callback();
-    });
-  }
+    public apply(compiler: Webpack.Compiler): void
+    {
+        const isWebpack5 = !!compiler.hooks;
+
+        if (!isWebpack5)
+        {
+            throw new Error(`The ${GenerateVersionFilePlugin.name} plugin requires Webpack 5`);
+        }
+
+        compiler.hooks.afterEmit.tapAsync(PLUGIN_NAME, (compilation, callback) =>
+        {
+            const generator = new VersionFileGenerator(this.options);
+            generator.generate();
+            callback();
+        });
+    }
 }
