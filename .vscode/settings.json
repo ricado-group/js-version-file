@@ -10,9 +10,11 @@
     "eslint.format.enable": true,
     "eslint.experimental.useFlatConfig": true,
     "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "files.insertFinalNewline": true
     },
     "[github-actions-workflow]": {
         "editor.tabSize": 2,
+        "files.insertFinalNewline": true
     }
 }
