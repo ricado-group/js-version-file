@@ -15,13 +15,13 @@ jobs:
     steps:
       # Step 1 - Checkout Code
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Step 2 - Setup NodeJS
       - name: Setup NodeJS
-        uses: actions/setup-node@v3.5.1
+        uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: "21"
           registry-url: "https://registry.npmjs.org"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}          
@@ -42,7 +42,7 @@ jobs:
 
       # Step 6 - Create Jekyll Theme
       - name: Create Jekyll Theme
-        uses: DamianReeves/write-file-action@v1.2   
+        uses: DamianReeves/write-file-action@v1.3
         with:
           path: ./docs/_config.yml
           contents: "theme: jekyll-theme-cayman"
@@ -50,7 +50,7 @@ jobs:
 
       # Step 7 - Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
