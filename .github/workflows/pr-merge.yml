@@ -1,4 +1,4 @@
-name: 'Pull Request - Merge'
+name: "Pull Request - Merge"
 
 on:
   pull_request:
@@ -9,9 +9,10 @@ on:
 
 jobs:
   merge:
-    uses: ricado-group/common-workflows/.github/workflows/pr-merge.yml@master
+    uses: ricado-group/common-workflows/.github/workflows/pr-merge.yml@v1
     with:
       projectType: |
         npm
+      gra-app-client-id: ${{ vars.GRA_APP_CLIENT_ID }}
     secrets:
-      token: ${{ secrets.GH_COMMIT_PAT }}
+      gra-app-private-key: ${{ secrets.GRA_APP_PRIVATE_KEY }}
