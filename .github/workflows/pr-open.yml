@@ -1,4 +1,4 @@
-name: 'Pull Request - Open'
+name: "Pull Request - Open"
 
 on:
   pull_request:
@@ -9,4 +9,4 @@ on:
 
 jobs:
   add-comment:
-    uses: ricado-group/common-workflows/.github/workflows/pr-open.yml@master
+    uses: ricado-group/common-workflows/.github/workflows/pr-open.yml@v1
